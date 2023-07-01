@@ -1,14 +1,65 @@
+:root {
+    --backgroundPrimary: #000;
+    --backgroundSecondary: #1e1e1e;
+    --colorPrimary: #fff;
+    --colorSecondary: #26ffd8;
+    --colorOperations: #e36464;
+}
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-* {
-    border: none;
-}
-
 img {
     display: block;
     max-width: 100%;
+}
+
+body {
+    background-color: var(--backgroundPrimary);
+    color: var(--colorPrimary);
+    margin: 0;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.screen {
+    flex-basis: 35%;
+}
+
+.buttons {
+    flex-basis: 65%;
+    display: grid;
+    grid-template-areas: "func ops"
+                         "numbers ops";
+}
+
+.functional {
+    grid-area: func;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.numbers {
+    grid-area: numbers;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.numbers button {
+    flex-basis: 30%;
+}
+
+.operations {
+    grid-area: ops;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
