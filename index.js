@@ -1,7 +1,8 @@
 let num1 = '';
 let solution = '';
 let operation = '';
-let displayValue = ''
+let displayValue = '';
+let lastPress = '';
 
 const numberButtons = document.querySelectorAll('.number-button');
 
@@ -28,16 +29,26 @@ allClearButton.addEventListener('click', e => {
 numberButtons.forEach(button => {
     button.addEventListener('click', e => {
         populateDisplay(e, screenTop);
+        lastPress = e.target.innerHTML;
     });
 });
 
 operations.forEach(button => {
     button.addEventListener('click', e => {
         populateDisplay(e, screenTop);
-        if (operation == '') {
-            num1 = parseFloat(displayValue.slice(0, displayValue.length - 1));
+        if (
+            lastPress == 'x' | 
+            lastPress == '/' |
+            lastPress == '-' |
+            lastPress == '+'
+         ) {
+            console.log(displayValue)
+            displayValue = displayValue.replace(e.target.innerHTML, "").replace(lastPress, e.target.innerHTML);
+            console.log(displayValue);
+            screenTop.innerHTML = displayValue;
             operation = e.target.innerHTML;
-        } else {
+        } else if (typeof parseFloat(lastPress) == Number) {
+            console.log(lastPress)
             num2 = parseFloat(displayValue.replace(num1.toString() + operation, "").replace(e.target.innerHTML, ""));
             solution = operate(operation, num1, num2);
             screenBottom.innerHTML = solution;
@@ -45,7 +56,11 @@ operations.forEach(button => {
             operation = e.target.innerHTML;
             displayValue = solution + operation;
             screenTop.innerHTML = displayValue;
+        } else {
+            num1 = parseFloat(displayValue.slice(0, displayValue.length - 1));
+            operation = e.target.innerHTML
         }
+        lastPress = e.target.innerHTML;
     });
 });
 
@@ -57,7 +72,7 @@ equals.addEventListener('click', e => {
 });
 
 decimal.addEventListener('click', e => {
-    populateDisplay(e, screenTop)
+    populateDisplay(e, screenTop);
 });
 
 function populateDisplay(e, node) {
