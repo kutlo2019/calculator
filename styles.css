@@ -41,6 +41,20 @@ body {
 .screen {
     flex-basis: 270px;
     height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+}
+
+.screen h3 {
+    font-size: 36px;
+    margin-right: 6px;
+}
+
+.screen h1 {
+    font-size: 48px;
+    margin-right: 6px;
 }
 
 .buttons {
