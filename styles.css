@@ -1,9 +1,10 @@
 :root {
-    --backgroundPrimary: #000;
-    --backgroundSecondary: #1e1e1e;
+    --backgroundPrimary: #22252d;
+    --backgroundSecondary: #292d36;
     --colorPrimary: #fff;
-    --colorSecondary: #26ffd8;
-    --colorOperations: #e36464;
+    --colorFunctional: #26ffd8;
+    --colorOperations: #de6263;
+    --buttonBackground: #272b33;
 }
 
 *,
@@ -12,48 +13,79 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 img {
     display: block;
     max-width: 100%;
 }
 
 body {
-    background-color: var(--backgroundPrimary);
+    background-color: var(--colorPrimary);
     color: var(--colorPrimary);
-    margin: 0;
+    height: 100%;
+    margin: 0 auto;
 }
 
 .container {
-    height: 100vh;
+    max-width: 390px;
+    background-color: var(--backgroundPrimary);
+    margin: 30px auto;
+    height: 720px;
     display: flex;
     flex-direction: column;
 }
 
 .screen {
-    flex-basis: 35%;
+    flex-basis: 270px;
+    height: 270px;
 }
 
 .buttons {
-    flex-basis: 65%;
+    background-color: var(--backgroundSecondary);
+    padding: 5px;
+    flex-basis: 450px;
     display: grid;
-    grid-template-areas: "func ops"
-                         "numbers ops";
+    grid-template-areas: "func func ops"
+                         "numbers numbers ops"
+                         "numbers numbers ops";
+}
+
+button {
+    margin: 0;
+    /* padding: 16px; */
+    background-color: var(--buttonBackground);
+    color: var(--colorPrimary);
+    border-radius: 50%;
+    border: 1px solid #3e3e3e;
+    border: none;
+}
+
+.operations button {
+    color: var(--colorOperations);
 }
 
 .functional {
     grid-area: func;
     display: flex;
     justify-content: center;
+    width: 270px;
+    height: 90px;
 }
 
 .functional > button {
     flex-basis: 100%;
+    color: var(--colorFunctional);
 }
 
 .numbers {
     grid-area: numbers;
     display: flex;
     flex-wrap: wrap;
+    width: 270px;
+    height: 360px;
 }
 
 .numbers > button {
@@ -65,7 +97,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 75px;
+    width: 90px;
+    height: 450px;
 }
 
 .operations button {
